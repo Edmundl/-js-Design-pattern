@@ -1,0 +1,31 @@
+1.设计模式
+	1）工厂模式
+	2）单例模式
+	3）模板方法
+	4）观察者模式
+	
+2.运动框架
+	1）基本运动
+	2）终止条件
+	3）运动结构
+	
+	清除上一个运动的定时器
+	开启新运动的定时器
+	判断种植条件，执行运动
+	
+	...js
+	timer=null;
+	clearInterval(timer);
+	timer=setInterval(function(){
+		if('end'){
+			clearInterval(timer);
+		}
+	},20)
+	...
+	
+	4）淡入淡出
+	5）缓冲效果
+	6）多物体运动
+	7）getComputeStyle
+	8）多属性同时运动
+	9）封装

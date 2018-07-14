@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>单例模式</title>
+    </head>
+    <body>
+        <script>
+            //唯一的实例
+			var Singleton= {
+				attr1:'attr1',
+				attr2:'attr2',
+				method:function(){
+					
+				}
+			};
+			//作用:实现命名空间，防止重名 java包,donet 命名空间
+			
+			function SingletonConstructor(attr1,attr2){
+				this.attr1=attr1;
+				this.attr2=attr2;
+			}
+			
+			//不使用闭包实现
+// 			var instance = null;
+// 			function getInstance(){
+// 				if(!instance){
+// 					instance=new SingletonConstructor(1,2);
+// 				}
+// 				return instance;
+// 			}
+			
+			//使用闭包实现
+			var getInstance=function(){
+				var instance = null;
+				return function(){
+					if(!instance){
+						instance = new SingletonConstructor(3,4);
+					}
+					return instance;
+				}
+			}();
+			
+			
+			var s1=getInstance();
+			var s2=getInstance();
+			
+			console.log(s1==s2); //true
+        </script>
+    </body>
+</html>

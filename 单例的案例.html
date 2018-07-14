@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>弹出框</title>
+    </head>
+    <body>
+		<div>
+			<input type='button' id="btn" value="弹出"/>
+			<input type='button' id="hide" value="隐藏"/>
+		</div>
+        <script>
+//             function createWin(){
+// 				var div=document.createElement('div');
+// 				div.innerHTML = '弹出框内容';
+// 				div.style.display = 'none';
+// 				document.body.appendChild(div);
+// 				return div;
+// 			}
+// 			
+// 			document.getElementById('btn').onclick=function(){
+// 				var el=createWin();
+// 				el.style.display='block';
+// 			};
+			
+			//单例模式实现
+			var Singleton = (function(){
+				function SingletonConstructor(){
+					var div=document.createElement('div');
+					//div.innerHTML = '弹出框内容';
+					div.style.display = 'none';
+					document.body.appendChild(div);
+					return div;
+				}
+				var instance = null;
+				return{
+					getInstance:function(content){
+						if(!instance){ //!instance是把null变成true
+							instance = new SingletonConstructor();
+						}
+						instance.innerHTML = content;
+						return {
+							el:instance,
+							show:function(){
+								this.el.style.display = 'block';
+							},
+							hide:function(){
+								this.el.style.display = 'none';
+							}
+						};
+					}
+				}
+			})();
+			var pop=Singleton.getInstance('hello');
+			
+			document.getElementById('btn').onclick=function(){
+			 	pop.show();
+			};
+			document.getElementById('hide').onclick=function(){
+				pop.hide();
+			};
+        </script>
+    </body>
+</html>
